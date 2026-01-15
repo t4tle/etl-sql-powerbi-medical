@@ -1,10 +1,18 @@
 import pandas as pd
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
+import os
+
+
+
+
+load_dotenv("./key.env") # Load environment variables from key.env
+
 
 # ---------------------------------------------------------
 # 1. Load the Excel file and list all sheet names
 # ---------------------------------------------------------
-excel_path = "/Data/Data Tables_cleaned.xlsx"
+excel_path = "./Data/Data Tables_cleaned.xlsx"
 xlsx = pd.ExcelFile(excel_path)
 sheet_names = xlsx.sheet_names
 
@@ -13,13 +21,16 @@ print("Found sheets:", sheet_names)
 # ---------------------------------------------------------
 # 2. PostgreSQL connection details
 # ---------------------------------------------------------
-user = "postgres"
-password = "your_password"
-host = "localhost"
-port = "5432"
-database = "Medical_db"
+
+user = os.getenv("user")
+password = os.getenv("DB_PASSWORD")
+host = os.getenv("host")
+port = os.getenv("port")
+database = os.getenv("database")
 
 engine = create_engine(f"postgresql://{user}:{password}@{host}:{port}/{database}")
+with engine.connect() as conn:
+    print("Connected!")
 
 # ---------------------------------------------------------
 # 3. Loop through each sheet and load into PostgreSQL
