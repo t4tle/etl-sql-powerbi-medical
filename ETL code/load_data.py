@@ -37,14 +37,15 @@ with engine.connect() as conn:
 # ---------------------------------------------------------
 for sheet in sheet_names:
     df = pd.read_excel(excel_path, sheet_name=sheet)
-
-    # Clean table name (remove spaces, lowercase)
-    table_name = sheet.lower().replace(" ", "_")
-
+    df = df.dropna(how="all")  # Drop rows where all elements are null
+    df = df.dropna(axis=1, how="all")# Drop columns where all elements are null
+    table_name = sheet.lower().replace(" ", "_")# Clean table name (remove spaces, lowercase)
+    #lower column names
+    df.columns = [col.lower().replace(" ", "_") for col in df.columns]
     df.to_sql(
         table_name,
         engine,
-        if_exists="replace",   # or "append"
+        if_exists="replace",  
         index=False
     )
 

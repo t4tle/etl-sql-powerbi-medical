@@ -28,7 +28,8 @@ This project demonstrates end-to-end data analytics skills:
 - Trends in visits over time
 
 ## 🚀 How to Run
-1. Install requirements: `pip install -r requirements.txt`
+1. Install requirements: `pip install pandas sqlalchemy psycopg2 openpyxl
+`
 2. Run ETL script: `python etl/load_data.py`
 3. Connect Power BI to the database
 4. Explore dashboards
