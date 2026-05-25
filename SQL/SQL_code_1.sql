@@ -1,20 +1,3 @@
-select * from clarity_fc
-select * from clarity_eap
-select * from clarity_loc
-select * from hsp_account
-select * from or_log
-select * from order_proc 
-select * from order_results
-select * from pat_enc
-select * from pat_enc_hsp
-select * from pat_or_adm_link
-select * from patient
-select * from res_components
-select * from spec_db_main
-select * from v_case_volume
-select * from v_lab_results
-select * from zc_order_status
-select * from zc_spec_source
 
 -- adding primary keys
 ALTER TABLE clarity_fc
